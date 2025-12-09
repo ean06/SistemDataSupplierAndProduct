@@ -1,19 +1,19 @@
 #include "supplier.h"
 #include "produk.h"
 
-void createListSupplier(ListSupplier &L) {
+void createListSupplier(listSupplier &L) {
     L.first = nullptr;
 }
 
 adrSupplier newElmSupplier(string nama) {
     adrSupplier p = new Supplier;
 
-    p->info.namaSupplier = nama;
+    p->namaSupplier = nama;
     p->next = nullptr;
     return p;
 }
 
-void tambahSupplier(listSupplier &L, adrSupplier p){
+void addSupplier(listSupplier &L, adrSupplier p){
     if (L.first == nullptr) {
         L.first = p;
     }else{
@@ -22,18 +22,18 @@ void tambahSupplier(listSupplier &L, adrSupplier p){
     }
 }
 
-void hapusSupplier(listSupplier &L, string nama, adrSupplier p){
-    adrSupplier q = new Supplier;
+void deleteSupplier(listSupplier &L, string nama, adrSupplier p){
+    adrSupplier s = new Supplier;
 
-    q = findSupplier(L, nama);
-    if (q == nullptr){
+    s = findSupplier(L, nama);
+    if (s == nullptr){
         cout << "data tidak ditemukan";
-    }else if (q->next->next == nullptr){
-        p = q->next;
-        q->next = nullptr;
+    }else if (s->next->next == nullptr){
+        p = s->next;
+        s->next = nullptr;
     }else{
-        p = q->next;
-        q->next = p->next;
+        p = s->next;
+        s->next = p->next;
         p->next = nullptr;
     }
 }
@@ -41,7 +41,7 @@ void hapusSupplier(listSupplier &L, string nama, adrSupplier p){
 adrSupplier findSupplier(listSupplier L, string nama){
     adrSupplier p = L.first;
     while (p != nullptr) {
-        if (p->info.namaSupplier == nama) {
+        if (p->namaSupplier == nama) {
             return p;
         }
         p = p->next;
@@ -55,25 +55,25 @@ void showSupplier(listSupplier L){
         cout << "Supplier tidak ada" << endl;
     } else {
         while (p != nullptr) {
-            cout << p->info.namaSupplier << endl;
+            cout << p->namaSupplier << endl;
             p = p->next;
         }
     }
 }
 
 void showSupplierProduk(listSupplier LS, listProduk LP){
-    adrSupplier s = L.first;
-    adrProduk p = L.first;
+    adrSupplier s = LS.first;
+    adrProduk p = LP.first;
     if ( s == nullptr) {
         cout << "Supplier tidak ada" << endl;
     } else {
         while (s != nullptr) {
-            cout << p->info.namaSupplier << endl;
+            cout << s->namaSupplier << endl;
             while (p != nullptr){
                 cout << "Nama: " << p->namaProduk << endl;
-                cout << "Katergori: " << p->info.kategori << endl;
-                cout << "Harga: " << p->info.harga << endl;
-                cout << "Minimal Order: " << p->info.minOrder << endl;
+                cout << "Katergori: " << p->kategori << endl;
+                cout << "Harga: " << p->harga << endl;
+                cout << "Minimal Order: " << p->minOrder << endl;
                 p = p->next;
             }
             s = s->next;

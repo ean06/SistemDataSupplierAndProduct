@@ -23,8 +23,9 @@ struct listProduk {
 
 void createListProduk(listProduk &L);
 adrProduk newElmProduk(string nama, string kategori, int harga, int minOrder);
-void tambahProduk(listProduk &L, adrProduk p);
-void hapusProduk(listProduk &L, adrProduk p);
+void addProduk(listProduk &L, adrProduk p);
+void deleteProduk(listProduk &L, adrProduk p);
+adrProduk findProduk(listProduk L, string nama);
 void showProduk(listProduk L);
 
 #endif // PRODUK_H_INCLUDED

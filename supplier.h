@@ -18,8 +18,8 @@ struct listSupplier{
 
 void createListSupplier(listSupplier &L);
 adrSupplier newElmSupplier(string nama);
-void tambahSupplier(listSupplier &L, adrSupplier p );
-void hapusSupplier(listSupplier &L,string nama, adrSupplier p);
+void addSupplier(listSupplier &L, adrSupplier p);
+void deleteSupplier(listSupplier &L, string nama, adrSupplier p);
 void showSupplier(listSupplier L);
 adrSupplier findSupplier(listSupplier L, string nama);
 void showSupplierProduk(listSupplier LS, listProduk LP);

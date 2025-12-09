@@ -16,12 +16,31 @@ adrProduk newElmProduk(string nama, string kategori, int harga, int minOrder){
     return p;
 }
 
-void tambahProduk(listProduk &L, adrProduk p){
-
+void addProduk(listProduk &L, adrProduk p){
+    if (L.first == nullptr && L.last == nullptr){
+        L.first = p;
+        L.last = p;
+    }else{
+        p->next = L.first;
+        L.first->prev = p;
+        L.first = p;
+    }
 }
-void hapusProduk(listProduk &L, adrProduk p){
-
+void deleteProduk(listProduk &L, adrProduk p){
+    
 }
+
+adrProduk findProduk(listProduk L, string nama){
+    adrProduk p = L.first;
+    while (p != nullptr) {
+        if (p->namaProduk == nama) {
+            return p;
+        }
+        p = p->next;
+    }
+    return nullptr;
+}
+
 void showProduk(listProduk L){
     adrProduk p = L.first;
     if (p == nullptr) {
