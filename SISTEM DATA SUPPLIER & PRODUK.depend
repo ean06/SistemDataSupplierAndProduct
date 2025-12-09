@@ -1,0 +1,22 @@
+# depslib dependency file v1.0
+1743445502 source:d:\c++\tubes 1\sistem data supplier & produk\main.cpp
+	<iostream>
+
+1765290890 source:d:\c++\tubes 1\sistem data supplier & produk\produk.cpp
+	"produk.h"
+
+1765285930 source:d:\c++\tubes 1\sistem data supplier & produk\relasi.cpp
+	"relasi.h"
+
+1765290947 d:\c++\tubes 1\sistem data supplier & produk\relasi.h
+	<iostream>
+	"supplier.h"
+	"produk.h"
+
+1765290859 d:\c++\tubes 1\sistem data supplier & produk\produk.h
+	<iostream>
+
+1765290978 d:\c++\tubes 1\sistem data supplier & produk\supplier.h
+	<iostream>
+	"produk.h"
+
