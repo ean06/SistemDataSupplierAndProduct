@@ -18,7 +18,7 @@ struct listRelasi {
 };
 
 void createListRelasi(listRelasi &L);
-adrRelasi newElmRelasi(listSupplier LS, listProduk LP);
+adrRelasi newElmRelasi(adrSupplier LS, adrProduk LP);
 void addRelasi(listRelasi LR, listSupplier LS, listProduk LP, adrRelasi r);
 void deleteRelasi(listRelasi LR, listSupplier LS, listProduk LP);
 

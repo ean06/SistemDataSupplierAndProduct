@@ -22,20 +22,60 @@ void addSupplier(listSupplier &L, adrSupplier p){
     }
 }
 
-void deleteSupplier(listSupplier &L, string nama, adrSupplier p){
-    adrSupplier s = new Supplier;
-
-    s = findSupplier(L, nama);
-    if (s == nullptr){
-        cout << "data tidak ditemukan";
-    }else if (s->next->next == nullptr){
-        p = s->next;
-        s->next = nullptr;
+void deleteFirstSupplier(listSupplier &L, adrSupplier &p){
+    if (L.first == nullptr){
+        p = nullptr;
     }else{
-        p = s->next;
-        s->next = p->next;
+        p = L.first;
+        L.first = L.first->next;
         p->next = nullptr;
     }
+}
+
+void deleteLastSupplier(listSupplier &L, adrSupplier &p){
+    adrSupplier prec;
+    if (L.first == nullptr){
+        p = nullptr;
+    }else if (L.first->next == nullptr){
+        p = L.first;
+        L.first = nullptr;
+    }else{
+        prec = L.first;
+        while (prec->next->next != nullptr){
+            prec = prec->next;
+        }
+        p = prec->next;
+        prec->next = nullptr;
+    }
+}
+
+void deleteAfterSupplier(listSupplier &L, adrSupplier &p, adrSupplier prec){
+    if (prec != nullptr && prec->next != nullptr){
+        p = prec->next;
+        prec->next = p->next;
+        p->next = nullptr;
+    }
+}
+void deleteSupplier(listSupplier &L, string nama, adrSupplier p){
+    adrSupplier prec;
+    p = findSupplier(L, nama);
+    if (p != nullptr){
+        if (p == L.first){
+            deleteFirstSupplier(L, p);
+        }else if (p->next == nullptr){
+            deleteLastSupplier(L, p);
+        }else{
+            prec = L.first;
+            while (prec->next != p){
+                prec = prec->next;
+            }
+            deleteAfterSupplier(L, p, prec);
+        }
+    }
+}
+
+void deleteSupplierWithProduk(listSupplier &LS, listProduk &LP, string nama){
+    adrSupplier p = findSupplier(LS, nama);
 }
 
 adrSupplier findSupplier(listSupplier L, string nama){

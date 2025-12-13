@@ -19,7 +19,11 @@ struct listSupplier{
 void createListSupplier(listSupplier &L);
 adrSupplier newElmSupplier(string nama);
 void addSupplier(listSupplier &L, adrSupplier p);
+void deleteFirstSupplier(listSupplier &L, adrSupplier &p);
+void deleteLastSupplier(listSupplier &L, adrSupplier &p);
+void deleteAfterSupplier(listSupplier &L, adrSupplier &p, adrSupplier prec);
 void deleteSupplier(listSupplier &L, string nama, adrSupplier p);
+void deleteSupplierWithProduk(listSupplier &LS, listProduk &LP, string nama);
 void showSupplier(listSupplier L);
 adrSupplier findSupplier(listSupplier L, string nama);
 void showSupplierProduk(listSupplier LS, listProduk LP);
