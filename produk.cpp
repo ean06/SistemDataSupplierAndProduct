@@ -16,6 +16,10 @@ adrProduk newElmProduk(string nama, string kategori, int harga, int minOrder){
     return p;
 }
 
+bool isEmptyProduk( listProduk L){
+    return (L.first == nullptr && L.last == nullptr);
+}
+
 void addProduk(listProduk &L, adrProduk p){
     if (L.first == nullptr && L.last == nullptr){
         L.first = p;
@@ -78,7 +82,7 @@ void deleteProduk(listProduk &L, adrProduk p){
             deleteFirstProduk(L, p);
         }else if (p == L.last){
             deleteLastProduk(L, p);
-        }else{
+        }else{  
             prec = L.first;
             while (prec->next != p){
                 prec = prec->next;
@@ -105,10 +109,12 @@ void showProduk(listProduk L){
         cout << "Data produk tidak ada" << endl;
     } else {
         while (p != nullptr) {
-            cout << "Nama: " << p->namaProduk << endl;
-            cout << "Katergori: " << p->kategori << endl;
-            cout << "Harga: " << p->harga << endl;
-            cout << "Minimal Order: " << p->minOrder << endl;
+            cout << endl;
+            cout << "Nama           : " << p->namaProduk << endl;
+            cout << "Katergori      : " << p->kategori << endl;
+            cout << "Harga          : " << p->harga << endl;
+            cout << "Minimal Order  : " << p->minOrder << endl;
+            cout << "----------------------------" << endl;
             p = p->next;
         }
     }

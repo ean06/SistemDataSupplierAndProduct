@@ -13,6 +13,10 @@ adrSupplier newElmSupplier(string nama) {
     return p;
 }
 
+bool isEmptySupplier( listSupplier L){
+    return (L.first == nullptr);
+}
+
 void addSupplier(listSupplier &L, adrSupplier p){
     if (L.first == nullptr) {
         L.first = p;
@@ -56,9 +60,9 @@ void deleteAfterSupplier(listSupplier &L, adrSupplier &p, adrSupplier prec){
         p->next = nullptr;
     }
 }
-void deleteSupplier(listSupplier &L, string nama, adrSupplier p){
+void deleteSupplier(listSupplier &L, string nama){
     adrSupplier prec;
-    p = findSupplier(L, nama);
+    adrSupplier p = findSupplier(L, nama);
     if (p != nullptr){
         if (p == L.first){
             deleteFirstSupplier(L, p);
@@ -76,6 +80,7 @@ void deleteSupplier(listSupplier &L, string nama, adrSupplier p){
 
 void deleteSupplierWithProduk(listSupplier &LS, listProduk &LP, string nama){
     adrSupplier p = findSupplier(LS, nama);
+    
 }
 
 adrSupplier findSupplier(listSupplier L, string nama){
@@ -101,23 +106,23 @@ void showSupplier(listSupplier L){
     }
 }
 
-void showSupplierProduk(listSupplier LS, listProduk LP){
-    adrSupplier s = LS.first;
-    adrProduk p = LP.first;
-    if ( s == nullptr) {
-        cout << "Supplier tidak ada" << endl;
-    } else {
-        while (s != nullptr) {
-            cout << s->namaSupplier << endl;
-            while (p != nullptr){
-                cout << "Nama: " << p->namaProduk << endl;
-                cout << "Katergori: " << p->kategori << endl;
-                cout << "Harga: " << p->harga << endl;
-                cout << "Minimal Order: " << p->minOrder << endl;
-                p = p->next;
-            }
-            s = s->next;
-        }
-    }
-}
+// void showSupplierProduk(listSupplier LS, listProduk LP){
+//     adrSupplier s = LS.first;
+//     adrProduk p = LP.first;
+//     if ( s == nullptr) {
+//         cout << "Supplier tidak ada" << endl;
+//     } else {
+//         while (s != nullptr) {
+//             cout << s->namaSupplier << endl;
+//             while (p != nullptr){
+//                 cout << "Nama: " << p->namaProduk << endl;
+//                 cout << "Katergori: " << p->kategori << endl;
+//                 cout << "Harga: " << p->harga << endl;
+//                 cout << "Minimal Order: " << p->minOrder << endl;
+//                 p = p->next;
+//             }
+//             s = s->next;
+//         }
+//     }
+// }
 

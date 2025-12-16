@@ -23,6 +23,7 @@ struct listProduk {
 
 void createListProduk(listProduk &L);
 adrProduk newElmProduk(string nama, string kategori, int harga, int minOrder);
+bool isEmptyProduk(listProduk L);
 void addProduk(listProduk &L, adrProduk p);
 void deleteFirstProduk(listProduk &L, adrProduk &p);
 void deleteLastProduk(listProduk &L, adrProduk &p);
