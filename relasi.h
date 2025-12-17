@@ -17,9 +17,15 @@ struct listRelasi {
     adrRelasi first;
 };
 
-void createListRelasi(listRelasi &L);
+void createListRelasi(listRelasi &LR);
 adrRelasi newElmRelasi(adrSupplier LS, adrProduk LP);
+bool checkRelasiSupplier(listRelasi LR, string namaSupplier);
 void addRelasi(listRelasi LR, listSupplier LS, listProduk LP, adrRelasi r);
 void deleteRelasi(listRelasi LR, listSupplier LS, listProduk LP);
+void showSupplierWithProduk(listSupplier LS, listRelasi LR);
+void showProdukBySupplier(listSupplier LS, listRelasi LR, string namaSupplier);
+void countProductsPerSupplier(listSupplier LS, listRelasi LR);
+void showMostSupplierProduk(listSupplier LS, listRelasi LR);
+void showFewstSupplierProduk(listSupplier LS, listRelasi LR);
 
 #endif // RELASI_H_INCLUDED
