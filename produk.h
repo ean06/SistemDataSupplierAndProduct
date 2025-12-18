@@ -21,15 +21,15 @@ struct listProduk {
     adrProduk last;
 };
 
-void createListProduk(listProduk &L);
+void createListProduk(listProduk &LP);
 adrProduk newElmProduk(string nama, string kategori, int harga, int minOrder);
-bool isEmptyProduk(listProduk L);
-void addProduk(listProduk &L, adrProduk p);
-void deleteFirstProduk(listProduk &L, adrProduk &p);
-void deleteLastProduk(listProduk &L, adrProduk &p);
-void deleteAfterProduk(listProduk &L, adrProduk &p, adrProduk prec);
-void deleteProduk(listProduk &L, adrProduk p);
-adrProduk findProduk(listProduk L, string nama);
-void showProduk(listProduk L);
+bool isEmptyProduk(listProduk LP);
+void addProduk(listProduk &LP, adrProduk p);
+void deleteFirstProduk(listProduk &LP, adrProduk &p);
+void deleteLastProduk(listProduk &LP, adrProduk &p);
+void deleteAfterProduk(listProduk &LP, adrProduk &p, adrProduk prec);
+void deleteProduk(listProduk &LP, adrProduk p);
+adrProduk findProduk(listProduk LP, string nama);
+void showProduk(listProduk LP);
 
 #endif // PRODUK_H_INCLUDED

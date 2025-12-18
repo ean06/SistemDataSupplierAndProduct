@@ -1,8 +1,8 @@
 #include "produk.h"
 
-void createListProduk(listProduk &L){
-    L.first = nullptr;
-    L.last = nullptr;
+void createListProduk(listProduk &LP){
+    LP.first = nullptr;
+    LP.last = nullptr;
 }
 
 adrProduk newElmProduk(string nama, string kategori, int harga, int minOrder){
@@ -16,46 +16,46 @@ adrProduk newElmProduk(string nama, string kategori, int harga, int minOrder){
     return p;
 }
 
-bool isEmptyProduk( listProduk L){
-    return (L.first == nullptr && L.last == nullptr);
+bool isEmptyProduk(listProduk LP){
+    return (LP.first == nullptr && LP.last == nullptr);
 }
 
-void addProduk(listProduk &L, adrProduk p){
-    if (L.first == nullptr && L.last == nullptr){
-        L.first = p;
-        L.last = p;
+void addProduk(listProduk &LP, adrProduk p){
+    if (LP.first == nullptr && LP.last == nullptr){
+        LP.first = p;
+        LP.last = p;
     }else{
-        p->next = L.first;
-        L.first->prev = p;
-        L.first = p;
+        LP.last->next = p;
+        p->prev = LP.last;
+        LP.last = p;
     }
 }
 
-void deleteFirstProduk(listProduk &L, adrProduk &p){
-    p = L.first;
-    if (L.first != nullptr){
-        if (L.first == L.last){
-            L.first = nullptr;
-            L.last = nullptr;
-        }else{
-            L.first = L.first->next;
-            L.first->prev = nullptr;
-            p->next = nullptr;
-        }
-    }
+void deleteFirstProduk(listProduk &LP, adrProduk &p){
+    p = LP.first;
+    if (isEmptyProduk(LP)){
+        p = nullptr;
+    }else if (p->next == nullptr){
+        LP.first = nullptr;
+        LP.last = nullptr;
+    }else{
+        LP.first = p->next;
+        p->next = nullptr;
+        LP.first->prev = nullptr;
+}
 }
 
-void deleteLastProduk(listProduk &L, adrProduk &p){
-    p = L.last;
-    if (L.last != nullptr){
-        if (L.first == L.last){
-            L.first = nullptr;
-            L.last = nullptr;
-        }else{
-            L.last = L.last->prev;
-            L.last->next = nullptr;
-            p->prev = nullptr;
-        }
+void deleteLastProduk(listProduk &LP, adrProduk &p){
+    p = LP.last;
+    if (isEmptyProduk(LP)){
+        p = nullptr;
+    }else if (p->prev == nullptr){
+        LP.first = nullptr;
+        LP.last = nullptr;
+    }else{
+        LP.last = p->prev;
+        p->prev = nullptr;
+        LP.last->next = nullptr;
     }
 }
 
@@ -75,25 +75,20 @@ void deleteAfterProduk(listProduk &L, adrProduk &p, adrProduk prec){
     }
 }
 
-void deleteProduk(listProduk &L, adrProduk p){
-    adrProduk prec;
+void deleteProduk(listProduk &LP, adrProduk p){
     if (p != nullptr){
-        if (p == L.first){
-            deleteFirstProduk(L, p);
-        }else if (p == L.last){
-            deleteLastProduk(L, p);
+        if (p == LP.first){
+            deleteFirstProduk(LP, p);
+        }else if (p == LP.last){
+            deleteLastProduk(LP, p);
         }else{  
-            prec = L.first;
-            while (prec->next != p){
-                prec = prec->next;
-            }
-            deleteAfterProduk(L, p, prec);
+            deleteAfterProduk(LP, p, p->prev);
         }
     }
 }
 
-adrProduk findProduk(listProduk L, string nama){
-    adrProduk p = L.first;
+adrProduk findProduk(listProduk LP, string nama){
+    adrProduk p = LP.first;
     while (p != nullptr) {
         if (p->namaProduk == nama) {
             return p;
@@ -103,8 +98,8 @@ adrProduk findProduk(listProduk L, string nama){
     return nullptr;
 }
 
-void showProduk(listProduk L){
-    adrProduk p = L.first;
+void showProduk(listProduk LP){
+    adrProduk p = LP.first;
     if (p == nullptr) {
         cout << "Data produk tidak ada" << endl;
     } else {

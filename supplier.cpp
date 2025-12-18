@@ -1,8 +1,9 @@
 #include "supplier.h"
 #include "produk.h"
+#include "relasi.h"
 
-void createListSupplier(listSupplier &L) {
-    L.first = nullptr;
+void createListSupplier(listSupplier &LS) {
+    LS.first = nullptr;
 }
 
 adrSupplier newElmSupplier(string nama) {
@@ -13,38 +14,40 @@ adrSupplier newElmSupplier(string nama) {
     return p;
 }
 
-bool isEmptySupplier( listSupplier L){
-    return (L.first == nullptr);
+bool isEmptySupplier(listSupplier LS){
+    return (LS.first == nullptr);
 }
 
-void addSupplier(listSupplier &L, adrSupplier p){
-    if (L.first == nullptr) {
-        L.first = p;
+void addSupplier(listSupplier &LS, adrSupplier p){
+    if (isEmptySupplier(LS)){
+        LS.first = p;
     }else{
-        p->next = L.first;
-        L.first = p;
+        p->next = LS.first;
+        LS.first = p;
     }
 }
 
-void deleteFirstSupplier(listSupplier &L, adrSupplier &p){
-    if (L.first == nullptr){
+void deleteFirstSupplier(listSupplier &LS, adrSupplier &p){
+    p = LS.first;
+    if (isEmptySupplier(LS)){
         p = nullptr;
+    }else if (p->next == nullptr){
+        LS.first = nullptr;    
     }else{
-        p = L.first;
-        L.first = L.first->next;
+        LS.first = p->next;
         p->next = nullptr;
     }
 }
 
-void deleteLastSupplier(listSupplier &L, adrSupplier &p){
+void deleteLastSupplier(listSupplier &LS, adrSupplier &p){
     adrSupplier prec;
-    if (L.first == nullptr){
+    if (isEmptySupplier(LS)){
         p = nullptr;
-    }else if (L.first->next == nullptr){
-        p = L.first;
-        L.first = nullptr;
+    }else if (LS.first->next == nullptr){
+        p = LS.first;
+        LS.first = nullptr;
     }else{
-        prec = L.first;
+        prec = LS.first;
         while (prec->next->next != nullptr){
             prec = prec->next;
         }
@@ -54,15 +57,19 @@ void deleteLastSupplier(listSupplier &L, adrSupplier &p){
 }
 
 void deleteAfterSupplier(listSupplier &L, adrSupplier &p, adrSupplier prec){
-    if (prec != nullptr && prec->next != nullptr){
+    if (isEmptySupplier(L)){
+        p = nullptr;
+    }else if (prec->next == nullptr){
+        p = nullptr;
+    }else{
         p = prec->next;
         prec->next = p->next;
         p->next = nullptr;
     }
 }
 void deleteSupplier(listSupplier &L, string nama){
-    adrSupplier prec;
-    adrSupplier p = findSupplier(L, nama);
+    adrSupplier prec, p;
+    p = findSupplier(L, nama);
     if (p != nullptr){
         if (p == L.first){
             deleteFirstSupplier(L, p);
@@ -78,13 +85,26 @@ void deleteSupplier(listSupplier &L, string nama){
     }
 }
 
-void deleteSupplierWithProduk(listSupplier &LS, listProduk &LP, string nama){
+void deleteSupplierWithProduk(listSupplier &LS, listRelasi &LR, string nama){
     adrSupplier p = findSupplier(LS, nama);
-    
+
+    if (p == nullptr){
+        cout << "Supplier tidak ditemukan." << endl;
+    }else{
+    adrRelasi r = LR.first;
+        while(r != nullptr){
+            adrRelasi nextR = r->next; 
+            if (r->up == p){
+            deleteRelasi(LR, r);
+            }
+            r = nextR;
+        }
+    deleteSupplier(LS, nama);
+    }
 }
 
-adrSupplier findSupplier(listSupplier L, string nama){
-    adrSupplier p = L.first;
+adrSupplier findSupplier(listSupplier LS, string nama){
+    adrSupplier p = LS.first;
     while (p != nullptr) {
         if (p->namaSupplier == nama) {
             return p;
@@ -94,8 +114,8 @@ adrSupplier findSupplier(listSupplier L, string nama){
     return nullptr;
 }
 
-void showSupplier(listSupplier L){
-    adrSupplier p = L.first;
+void showSupplier(listSupplier LS){
+    adrSupplier p = LS.first;
     if (p == nullptr) {
         cout << "Supplier tidak ada" << endl;
     } else {
@@ -106,23 +126,23 @@ void showSupplier(listSupplier L){
     }
 }
 
-// void showSupplierProduk(listSupplier LS, listProduk LP){
-//     adrSupplier s = LS.first;
-//     adrProduk p = LP.first;
-//     if ( s == nullptr) {
-//         cout << "Supplier tidak ada" << endl;
-//     } else {
-//         while (s != nullptr) {
-//             cout << s->namaSupplier << endl;
-//             while (p != nullptr){
-//                 cout << "Nama: " << p->namaProduk << endl;
-//                 cout << "Katergori: " << p->kategori << endl;
-//                 cout << "Harga: " << p->harga << endl;
-//                 cout << "Minimal Order: " << p->minOrder << endl;
-//                 p = p->next;
-//             }
-//             s = s->next;
-//         }
-//     }
-// }
+void showSupplierProduk(listSupplier LS, listProduk LP){
+    adrSupplier s = LS.first;
+    adrProduk p = LP.first;
+    if ( s == nullptr) {
+        cout << "Supplier tidak ada" << endl;
+    } else {
+        while (s != nullptr) {
+            cout << s->namaSupplier << endl;
+            while (p != nullptr){
+                cout << "Nama: " << p->namaProduk << endl;
+                cout << "Katergori: " << p->kategori << endl;
+                cout << "Harga: " << p->harga << endl;
+                cout << "Minimal Order: " << p->minOrder << endl;
+                p = p->next;
+            }
+            s = s->next;
+        }
+    }
+}
 

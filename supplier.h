@@ -1,7 +1,7 @@
 #ifndef SUPPLIER_H_INCLUDED
 #define SUPPLIER_H_INCLUDED
 #include <iostream>
-#include "produk.h"
+#include "relasi.h"
 
 using namespace std;
 
@@ -16,17 +16,17 @@ struct listSupplier{
     adrSupplier first;
 };
 
-void createListSupplier(listSupplier &L);
+void createListSupplier(listSupplier &LS);
 adrSupplier newElmSupplier(string nama);
-bool isEmptySupplier(listSupplier L);
-void addSupplier(listSupplier &L, adrSupplier p);
-void deleteFirstSupplier(listSupplier &L, adrSupplier &p);
-void deleteLastSupplier(listSupplier &L, adrSupplier &p);
-void deleteAfterSupplier(listSupplier &L, adrSupplier &p, adrSupplier prec);
+bool isEmptySupplier(listSupplier LS);
+void addSupplier(listSupplier &LS, adrSupplier p);
+void deleteFirstSupplier(listSupplier &LS, adrSupplier &p);
+void deleteLastSupplier(listSupplier &LS, adrSupplier &p);
+void deleteAfterSupplier(listSupplier &LS, adrSupplier &p, adrSupplier prec);
 void deleteSupplier(listSupplier &L, string nama);
-void deleteSupplierWithProduk(listSupplier &LS, listProduk &LP, string nama);
-void showSupplier(listSupplier L);
-adrSupplier findSupplier(listSupplier L, string nama);
+void deleteSupplierWithProduk(listSupplier &LS, listRelasi &LR, string nama);
+adrSupplier findSupplier(listSupplier LS, string nama);
+void showSupplier(listSupplier LS);
 void showSupplierProduk(listSupplier LS, listProduk LP);
 
 #endif // SUPPLIER_H_INCLUDED

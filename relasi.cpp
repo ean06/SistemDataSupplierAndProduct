@@ -25,12 +25,102 @@ bool checkRelasiSupplier(listRelasi LR, string namaSupplier){
     return false;
 }
 
-void addRelasi(listRelasi LR, listSupplier LS, listProduk LP, adrRelasi r){
-
+void addRelasi(listRelasi &LR, adrRelasi r){
+    if (LR.first == nullptr){
+        LR.first = r;
+    }else {
+        r->next = LR.first;
+        LR.first = r;
+    }
 }
 
-void deleteRelasi(listRelasi LR, listSupplier LS, listProduk LP){
+void deleteFirstRelasi(listRelasi &LR, adrRelasi &p){
+    p = LR.first;
+    if (LR.first == nullptr){
+        p = nullptr;
+    }else if (p->next == nullptr){
+        LR.first = nullptr;
+    }else{
+        LR.first = p->next;
+        p->next = nullptr;
+    }
+}
 
+void deleteLastRelasi(listRelasi &LR, adrRelasi &p){
+    adrRelasi prec;
+    if (LR.first == nullptr){
+        p = nullptr;
+    }else if (LR.first->next == nullptr){
+        p = LR.first;
+        LR.first = nullptr;
+    }else{
+        prec = LR.first;
+        while (prec->next->next != nullptr){
+            prec = prec->next;
+        }
+        p = prec->next;
+        prec->next = nullptr;
+    }
+}
+
+void deleteAfterRelasi(listRelasi &LR, adrRelasi &p, adrRelasi prec){
+    if (LR.first == nullptr){
+        p = nullptr;
+    }else if (prec == nullptr || prec->next == nullptr){
+        p = nullptr;
+    }else{
+        p = prec->next;
+        prec->next = p->next;
+        p->next = nullptr;
+    }
+}
+
+void deleteRelasi(listRelasi &LR, adrRelasi &p){
+    adrRelasi prec;
+    if (p != nullptr){
+         if (p == LR.first){
+            deleteFirstRelasi(LR, p);
+        }else if (p->next == nullptr){
+            deleteLastRelasi(LR, p);
+        }else{  
+            prec = LR.first;
+            while (prec != nullptr && prec->next != p){
+                prec = prec->next;
+            }
+            if (prec != nullptr){
+            deleteAfterRelasi(LR, p, prec);
+            }
+        }
+    }
+}
+
+adrRelasi findRelasi(listRelasi LR, string namaSupplier, string namaProduk){
+    adrRelasi r = LR.first;
+    while (r != nullptr){
+        if (r->up != nullptr && r->down != nullptr && r->up->namaSupplier == namaSupplier && r->down->namaProduk == namaProduk){
+            return r;
+        }
+        r = r->next;
+    }
+    return nullptr;
+}
+
+void deleteProdukFromSupplier(listRelasi &LR){
+    string namaSupplier, namaProduk;
+
+    cout << "Masukkan nama supplier: ";
+    cin >> namaSupplier;
+    cout << "Masukkan nama produk: ";
+    cin >> namaProduk;
+
+    adrRelasi r = findRelasi(LR, namaSupplier, namaProduk);
+
+    if (r != nullptr){
+        deleteRelasi(LR, r);
+        cout << "Produk berhasil dihapus dari supplier." << endl;
+    }else{
+        cout << "Relasi tidak ditemukan." << endl;
+    }
 }
 
 void showSupplierWithProduk(listSupplier LS, listRelasi LR){
@@ -59,6 +149,7 @@ void showSupplierWithProduk(listSupplier LS, listRelasi LR){
         s = s->next;
     }
 }
+
 
 void showProdukBySupplier(listSupplier LS, listRelasi LR, string namaSupplier){
     adrSupplier supplierDicari = findSupplier(LS, namaSupplier);
@@ -178,6 +269,11 @@ void showFewstSupplierProduk(listSupplier LS, listRelasi LR){
         cout << "Jumlah Produk  : " << maxProduk << endl;
     }
 }
+
+
+
+
+
 
 
 
