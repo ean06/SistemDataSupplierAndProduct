@@ -20,8 +20,13 @@ struct listRelasi {
 void createListRelasi(listRelasi &LR);
 adrRelasi newElmRelasi(adrSupplier LS, adrProduk LP);
 bool checkRelasiSupplier(listRelasi LR, string namaSupplier);
-void addRelasi(listRelasi LR, listSupplier LS, listProduk LP, adrRelasi r);
-void deleteRelasi(listRelasi LR, listSupplier LS, listProduk LP);
+void addRelasi(listRelasi &LR, adrRelasi r);
+void deleteFirstRelasi(listRelasi &LR, adrRelasi &p);
+void deleteLastRelasi(listRelasi &LR, adrRelasi &p);
+void deleteAfterRelasi(listRelasi &LR, adrRelasi &p, adrRelasi prec);
+void deleteRelasi(listRelasi &LR, adrRelasi &p);
+adrRelasi findRelasi(listRelasi LR, string namaSupplier, string namaProduk);
+void deleteProdukFromSupplier(listRelasi &LR);
 void showSupplierWithProduk(listSupplier LS, listRelasi LR);
 void showProdukBySupplier(listSupplier LS, listRelasi LR, string namaSupplier);
 void countProductsPerSupplier(listSupplier LS, listRelasi LR);
