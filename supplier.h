@@ -1,7 +1,7 @@
 #ifndef SUPPLIER_H_INCLUDED
 #define SUPPLIER_H_INCLUDED
 #include <iostream>
-#include "relasi.h"
+// #include "relasi.h"
 
 using namespace std;
 
@@ -24,9 +24,8 @@ void deleteFirstSupplier(listSupplier &LS, adrSupplier &p);
 void deleteLastSupplier(listSupplier &LS, adrSupplier &p);
 void deleteAfterSupplier(listSupplier &LS, adrSupplier &p, adrSupplier prec);
 void deleteSupplier(listSupplier &L, string nama);
-void deleteSupplierWithProduk(listSupplier &LS, listRelasi &LR, string nama);
 adrSupplier findSupplier(listSupplier LS, string nama);
 void showSupplier(listSupplier LS);
-void showSupplierProduk(listSupplier LS, listProduk LP);
+// void deleteSupplierWithProduk(listSupplier &LS, listRelasi &LR, string nama);
 
 #endif // SUPPLIER_H_INCLUDED

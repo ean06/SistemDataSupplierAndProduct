@@ -67,6 +67,7 @@ void deleteAfterSupplier(listSupplier &L, adrSupplier &p, adrSupplier prec){
         p->next = nullptr;
     }
 }
+
 void deleteSupplier(listSupplier &L, string nama){
     adrSupplier prec, p;
     p = findSupplier(L, nama);
@@ -82,24 +83,6 @@ void deleteSupplier(listSupplier &L, string nama){
             }
             deleteAfterSupplier(L, p, prec);
         }
-    }
-}
-
-void deleteSupplierWithProduk(listSupplier &LS, listRelasi &LR, string nama){
-    adrSupplier p = findSupplier(LS, nama);
-
-    if (p == nullptr){
-        cout << "Supplier tidak ditemukan." << endl;
-    }else{
-    adrRelasi r = LR.first;
-        while(r != nullptr){
-            adrRelasi nextR = r->next; 
-            if (r->up == p){
-            deleteRelasi(LR, r);
-            }
-            r = nextR;
-        }
-    deleteSupplier(LS, nama);
     }
 }
 
@@ -120,29 +103,27 @@ void showSupplier(listSupplier LS){
         cout << "Supplier tidak ada" << endl;
     } else {
         while (p != nullptr) {
-            cout << p->namaSupplier << endl;
+            cout << "Nama Supplier : " << p->namaSupplier << endl;
+            cout << "----------------------------" << endl;
             p = p->next;
         }
     }
 }
 
-void showSupplierProduk(listSupplier LS, listProduk LP){
-    adrSupplier s = LS.first;
-    adrProduk p = LP.first;
-    if ( s == nullptr) {
-        cout << "Supplier tidak ada" << endl;
-    } else {
-        while (s != nullptr) {
-            cout << s->namaSupplier << endl;
-            while (p != nullptr){
-                cout << "Nama: " << p->namaProduk << endl;
-                cout << "Katergori: " << p->kategori << endl;
-                cout << "Harga: " << p->harga << endl;
-                cout << "Minimal Order: " << p->minOrder << endl;
-                p = p->next;
-            }
-            s = s->next;
-        }
-    }
-}
+// void deleteSupplierWithProduk(listSupplier &LS, listRelasi &LR, string nama){
+//     adrSupplier p = findSupplier(LS, nama);
 
+//     if (p == nullptr){
+//         cout << "Supplier tidak ditemukan." << endl;
+//     }else{
+//     adrRelasi r = LR.first;
+//         while(r != nullptr){
+//             adrRelasi nextR = r->next; 
+//             if (r->up == p){
+//             deleteRelasi(LR, r);
+//             }
+//             r = nextR;
+//         }
+//     deleteSupplier(LS, nama);
+//     }
+// }
