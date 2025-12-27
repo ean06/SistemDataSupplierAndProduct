@@ -1,10 +1,8 @@
 #ifndef SUPPLIER_H_INCLUDED
 #define SUPPLIER_H_INCLUDED
 #include <iostream>
-// #include "relasi.h"
 
 using namespace std;
-
 typedef struct Supplier *adrSupplier;
 
 struct Supplier{
@@ -26,6 +24,5 @@ void deleteAfterSupplier(listSupplier &LS, adrSupplier &p, adrSupplier prec);
 void deleteSupplier(listSupplier &L, string nama);
 adrSupplier findSupplier(listSupplier LS, string nama);
 void showSupplier(listSupplier LS);
-// void deleteSupplierWithProduk(listSupplier &LS, listRelasi &LR, string nama);
 
 #endif // SUPPLIER_H_INCLUDED

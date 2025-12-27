@@ -3,7 +3,6 @@
 #include "produk.h"
 
 void createListRelasi(listRelasi &L){
-// 
     L.first = nullptr;
 }
 

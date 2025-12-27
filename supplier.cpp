@@ -1,6 +1,4 @@
 #include "supplier.h"
-#include "produk.h"
-#include "relasi.h"
 
 void createListSupplier(listSupplier &LS) {
     LS.first = nullptr;
@@ -109,21 +107,3 @@ void showSupplier(listSupplier LS){
         }
     }
 }
-
-// void deleteSupplierWithProduk(listSupplier &LS, listRelasi &LR, string nama){
-//     adrSupplier p = findSupplier(LS, nama);
-
-//     if (p == nullptr){
-//         cout << "Supplier tidak ditemukan." << endl;
-//     }else{
-//     adrRelasi r = LR.first;
-//         while(r != nullptr){
-//             adrRelasi nextR = r->next; 
-//             if (r->up == p){
-//             deleteRelasi(LR, r);
-//             }
-//             r = nextR;
-//         }
-//     deleteSupplier(LS, nama);
-//     }
-// }

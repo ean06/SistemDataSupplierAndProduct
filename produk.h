@@ -3,7 +3,6 @@
 #include <iostream>
 
 using namespace std;
-
 typedef struct Produk *adrProduk;
 
 struct Produk {

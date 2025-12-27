@@ -3,8 +3,6 @@
 #include "produk.h"
 #include "relasi.h"
 
-using namespace std;
-
 void tungguEnter(){
     cout << "\nTekan Enter untuk melanjutkan";
     cin.ignore();
@@ -336,7 +334,7 @@ int main(){
     while (programBerjalan){
         clearScreen();
         cout << "========================================\n";
-        cout << "     SISTEM MANAJEMEN SUPPLIER\n";
+        cout << "      SISTEM MANAJEMEN SUPPLIER\n";
         cout << "========================================\n";
 
         // MENU UTAMA
@@ -387,7 +385,7 @@ int main(){
                         kembaliKeMenuUtama = true;
                         break;
                     default:
-                        cout << "Pilihan tidak valid! Silakan masukkan angka 0-4." << endl;
+                        cout << "Pilihan tidak valid! Silakan masukkan angka 0-4" << endl;
                         tungguEnter();
                 }
             }
@@ -432,7 +430,7 @@ int main(){
                         kembaliKeMenuUtama = true;
                         break;
                     default:
-                        cout << "Pilihan tidak valid! Silakan masukkan angka 0-4." << endl;
+                        cout << "Pilihan tidak valid! Silakan masukkan angka 0-4" << endl;
                         tungguEnter();
                 }
             }
@@ -492,7 +490,7 @@ int main(){
                         kembaliKeMenuUtama = true;
                         break;
                     default:
-                        cout << "Pilihan tidak valid! Silakan masukkan angka 0-3." << endl;
+                        cout << "Pilihan tidak valid! Silakan masukkan angka 0-7" << endl;
                         tungguEnter();
                 }
             }
